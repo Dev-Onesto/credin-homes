@@ -652,52 +652,53 @@
   </script>
 
 <script>
-   (function() {
-     // 1. Auto-animate sections on scroll
-     const observer = new IntersectionObserver((entries) => {
-       entries.forEach(entry => {
-         if (entry.isIntersecting) {
-           entry.target.classList.add('show');
-           observer.unobserve(entry.target);
-         }
-       });
-     }, { threshold: 0.1 });
-   
-     // Find all sections and cards and make them fade up
-     document.querySelectorAll('section, .property-card, .service-card, .value-card').forEach(el => {
-       el.classList.add('fade-up');
-       observer.observe(el);
-     });
-   
-     // Find grids and add stagger delay
-     document.querySelectorAll('#property-grid, #services-grid, #all-services-grid').forEach(grid => {
-       grid.classList.add('stagger');
-     });
-   
-     // 2. Hero animations (index.html only — safe to run on all pages)
-     const hero = document.getElementById('hero');
-     if (hero) {
-       const kids = hero.children[1].children; // the inner content div
-       if (kids[0]) kids[0].classList.add('hero-fade', 'd1'); // subtitle
-       if (kids[1]) kids[1].classList.add('hero-fade', 'd2'); // title
-       if (kids[2]) kids[2].classList.add('hero-fade', 'd3'); // paragraph
-       if (kids[3]) kids[3].classList.add('hero-fade', 'd4'); // search bar
-       if (kids[4]) kids[4].classList.add('hero-fade', 'd5'); // stats
-     }
-   
-     // 3. Smooth scroll for anchor links
-     document.querySelectorAll('a[href^="#"]').forEach(a => {
-       a.addEventListener('click', function(e) {
-         const id = this.getAttribute('href');
-         if (id !== '#') {
-           e.preventDefault();
-           const target = document.querySelector(id);
-           if (target) target.scrollIntoView({ behavior: 'smooth' });
-         }
-       });
-     });
-   })();
-   </script>
+(function() {
+  // 1. Auto-animate sections on scroll (replays every time)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      } else {
+        entry.target.classList.remove('show');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Find all sections and cards and make them fade up
+  document.querySelectorAll('section, .property-card, .service-card, .value-card').forEach(el => {
+    el.classList.add('fade-up');
+    observer.observe(el);
+  });
+
+  // Find grids and add stagger delay
+  document.querySelectorAll('#property-grid, #services-grid, #all-services-grid').forEach(grid => {
+    grid.classList.add('stagger');
+  });
+
+  // 2. Hero animations (index.html only)
+  const hero = document.getElementById('hero');
+  if (hero) {
+    const kids = hero.children[1].children;
+    if (kids[0]) kids[0].classList.add('hero-fade', 'd1');
+    if (kids[1]) kids[1].classList.add('hero-fade', 'd2');
+    if (kids[2]) kids[2].classList.add('hero-fade', 'd3');
+    if (kids[3]) kids[3].classList.add('hero-fade', 'd4');
+    if (kids[4]) kids[4].classList.add('hero-fade', 'd5');
+  }
+
+  // 3. Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const id = this.getAttribute('href');
+      if (id !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(id);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
