@@ -41,6 +41,42 @@
     .spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
     .spinner.show { display: inline-block; }
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Elements start hidden and move up when visible */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Grid children stagger in one by one */
+.stagger > *:nth-child(1) { transition-delay: 0s; }
+.stagger > *:nth-child(2) { transition-delay: 0.1s; }
+.stagger > *:nth-child(3) { transition-delay: 0.2s; }
+.stagger > *:nth-child(4) { transition-delay: 0.3s; }
+.stagger > *:nth-child(5) { transition-delay: 0.4s; }
+.stagger > *:nth-child(6) { transition-delay: 0.5s; }
+
+/* Hero elements fade in on page load */
+.hero-fade {
+  animation: fadeInUp 0.8s ease both;
+}
+.d1 { animation-delay: 0.2s; }
+.d2 { animation-delay: 0.4s; }
+.d3 { animation-delay: 0.6s; }
+.d4 { animation-delay: 0.8s; }
+.d5 { animation-delay: 1s; }
+    
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased">
@@ -340,6 +376,54 @@
          });
       }
       });
+   </script>
+
+<script>
+   (function() {
+     // 1. Auto-animate sections on scroll
+     const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+         if (entry.isIntersecting) {
+           entry.target.classList.add('show');
+           observer.unobserve(entry.target);
+         }
+       });
+     }, { threshold: 0.1 });
+   
+     // Find all sections and cards and make them fade up
+     document.querySelectorAll('section, .property-card, .service-card, .value-card').forEach(el => {
+       el.classList.add('fade-up');
+       observer.observe(el);
+     });
+   
+     // Find grids and add stagger delay
+     document.querySelectorAll('#property-grid, #services-grid, #all-services-grid').forEach(grid => {
+       grid.classList.add('stagger');
+     });
+   
+     // 2. Hero animations (index.html only — safe to run on all pages)
+     const hero = document.getElementById('hero');
+     if (hero) {
+       const kids = hero.children[1].children; // the inner content div
+       if (kids[0]) kids[0].classList.add('hero-fade', 'd1'); // subtitle
+       if (kids[1]) kids[1].classList.add('hero-fade', 'd2'); // title
+       if (kids[2]) kids[2].classList.add('hero-fade', 'd3'); // paragraph
+       if (kids[3]) kids[3].classList.add('hero-fade', 'd4'); // search bar
+       if (kids[4]) kids[4].classList.add('hero-fade', 'd5'); // stats
+     }
+   
+     // 3. Smooth scroll for anchor links
+     document.querySelectorAll('a[href^="#"]').forEach(a => {
+       a.addEventListener('click', function(e) {
+         const id = this.getAttribute('href');
+         if (id !== '#') {
+           e.preventDefault();
+           const target = document.querySelector(id);
+           if (target) target.scrollIntoView({ behavior: 'smooth' });
+         }
+       });
+     });
+   })();
    </script>
 
 </body>
