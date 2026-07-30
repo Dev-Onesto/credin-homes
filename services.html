@@ -42,6 +42,28 @@
     .whatsapp-float { animation: pulse-wa 2.5s infinite; }
     @keyframes pulse-wa { 0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.35); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.6); } }
 
+    /* Image loading placeholder */
+    .prop-img-wrap {
+      background: #e5e7eb;
+      position: relative;
+    }
+    .prop-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    .prop-img-wrap img {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    
     /* ===== ANIMATIONS ===== */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(40px); }
