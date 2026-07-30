@@ -703,11 +703,11 @@
        });
      }, { threshold: 0.1 });
    
-     // Find all sections and cards and make them fade up
-     document.querySelectorAll('section, .property-card, .service-card, .value-card').forEach(el => {
-       el.classList.add('fade-up');
-       observer.observe(el);
-     });
+       // Find all sections and cards and make them fade up (skip hero)
+      document.querySelectorAll('section:not(#hero), .property-card, .service-card, .value-card').forEach(el => {
+        el.classList.add('fade-up');
+        observer.observe(el);
+      });
    
      // Find grids and add stagger delay
      document.querySelectorAll('#property-grid, #services-grid, #all-services-grid').forEach(grid => {
