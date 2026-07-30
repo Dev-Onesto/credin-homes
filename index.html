@@ -691,17 +691,14 @@
   </script>
 
 <script>
-   (function() {
-     // 1. Auto-animate sections on scroll (replays every time)
-     const observer = new IntersectionObserver((entries) => {
-       entries.forEach(entry => {
-         if (entry.isIntersecting) {
-           entry.target.classList.add('show');
-         } else {
-           entry.target.classList.remove('show');
-         }
-       });
-     }, { threshold: 0.1 });
+     // 1. Auto-animate sections on scroll (only when scrolling down, once)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('show')) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, { threshold: 0.1 });
    
        // Find all sections and cards and make them fade up (skip hero)
       document.querySelectorAll('section:not(#hero), .property-card, .service-card, .value-card').forEach(el => {
