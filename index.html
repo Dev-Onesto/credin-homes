@@ -490,9 +490,9 @@
       const filtered = filter === 'all' ? properties : properties.filter(p => p.type === filter);
 
       grid.innerHTML = filtered.map(p => `
-        <div class="property-card bg-white border border-gray-200 rounded-xl overflow-hidden">
-          <div class="relative h-52 overflow-hidden">
-            <img src="${p.image}" alt="${p.title}" class="prop-img w-full h-full object-cover" loading="lazy">
+          <div class="property-card bg-white border border-gray-200 rounded-xl overflow-hidden">
+            <div class="prop-img-wrap relative h-52 overflow-hidden">
+            <img src="${p.image}" alt="${p.title}" class="prop-img w-full h-full object-cover" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             <span class="absolute top-3 left-3 ${p.type === 'sale' ? 'bg-navy' : p.type === 'rent' ? 'bg-green-600' : 'bg-gold'} text-white px-3 py-1 rounded-md text-xs font-semibold">${p.status}</span>
             ${p.featured ? '<span class="absolute top-3 right-3 bg-black/60 text-white px-3 py-1 rounded-md text-xs font-medium">Featured</span>' : ''}
           </div>
