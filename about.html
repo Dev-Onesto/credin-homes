@@ -40,6 +40,28 @@
     .value-card { transition: all 0.3s ease; }
     .value-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(13,27,94,0.08); border-color: #f6a81f; }
 
+    /* Image loading placeholder */
+    .prop-img-wrap {
+      background: #e5e7eb;
+      position: relative;
+    }
+    .prop-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    .prop-img-wrap img {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
     /* ===== ANIMATIONS ===== */
       @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(40px); }
