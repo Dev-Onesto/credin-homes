@@ -80,42 +80,6 @@
         0% { background-position: 200% 0; }
         100% { background-position: -200% 0; }
       }
-
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Elements start hidden */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    
-    /* When entering view — animation plays */
-    .fade-up.show {
-      animation: fadeInUp 0.7s ease forwards;
-    }
-    
-    /* Stagger delays for grid children */
-    .stagger > *:nth-child(1) { animation-delay: 0s; }
-    .stagger > *:nth-child(2) { animation-delay: 0.1s; }
-    .stagger > *:nth-child(3) { animation-delay: 0.2s; }
-    .stagger > *:nth-child(4) { animation-delay: 0.3s; }
-    .stagger > *:nth-child(5) { animation-delay: 0.4s; }
-    .stagger > *:nth-child(6) { animation-delay: 0.5s; }
-    
-    /* Hero page-load animations */
-    .hero-anim { animation: fadeInUp 0.8s ease both; }
-    .d1 { animation-delay: 0.2s; }
-    .d2 { animation-delay: 0.4s; }
-    .d3 { animation-delay: 0.6s; }
-    .d4 { animation-delay: 0.8s; }
-    .d5 { animation-delay: 1s; }
-    
-    body { animation: fadeIn 0.5s ease; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 <base target="_blank">
 </head>
@@ -690,66 +654,5 @@
     renderProperties('all');
     renderServices();
   </script>
-
-<script>
-    (function() {
-      var lastScrollY = window.scrollY;
-    
-      // 1. Add fade-up class to sections and cards
-      document.querySelectorAll('section:not(#hero), .property-card, .service-card, .value-card').forEach(function(el) {
-        el.classList.add('fade-up');
-      });
-    
-      // 2. Add stagger class to grids
-      document.querySelectorAll('#property-grid, #services-grid, #all-services-grid').forEach(function(grid) {
-        grid.classList.add('stagger');
-      });
-    
-      // 3. Scroll observer — re-animates every time you scroll down to it
-      var observer = new IntersectionObserver(function(entries) {
-        var currentScrollY = window.scrollY;
-        var scrollingDown = currentScrollY > lastScrollY;
-        lastScrollY = currentScrollY;
-    
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting && scrollingDown) {
-            // Scrolling down — element enters view → animate in
-            entry.target.classList.add('show');
-          } else if (!entry.isIntersecting && !scrollingDown) {
-            // Scrolling up — element exits view → reset instantly (no animation)
-            entry.target.classList.remove('show');
-          }
-        });
-      }, { threshold: 0, rootMargin: '0px 0px 30px 0px' });
-    
-      document.querySelectorAll('.fade-up').forEach(function(el) {
-        observer.observe(el);
-      });
-    
-      // 4. Hero animations (index.html only)
-      var hero = document.getElementById('hero');
-      if (hero) {
-        var kids = hero.querySelectorAll('p, h1, .bg-white.rounded-xl, .flex-wrap.justify-center');
-        if (kids[0]) kids[0].classList.add('hero-anim', 'd1');
-        if (kids[1]) kids[1].classList.add('hero-anim', 'd2');
-        if (kids[2]) kids[2].classList.add('hero-anim', 'd3');
-        if (kids[3]) kids[3].classList.add('hero-anim', 'd4');
-        if (kids[4]) kids[4].classList.add('hero-anim', 'd5');
-      }
-    
-      // 5. Smooth scroll
-      document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-        a.addEventListener('click', function(e) {
-          var id = this.getAttribute('href');
-          if (id !== '#') {
-            e.preventDefault();
-            var target = document.querySelector(id);
-            if (target) target.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-    })();
-    </script>
-
 </body>
 </html>
