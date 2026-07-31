@@ -484,8 +484,7 @@
 
       if (!filtered.length) {
         grid.innerHTML = '<div class="col-span-full text-center py-16 text-gray-400"><p class="text-lg font-medium text-navy mb-2">No properties found</p><p class="text-sm">Try adjusting your search criteria</p></div>';
-        return;
-      }
+      }else {
 
       grid.innerHTML = filtered.map(p => `
         <div class="property-card bg-white border border-gray-200 rounded-xl overflow-hidden reveal">
@@ -518,6 +517,7 @@
       `).join('');
       
           if (window.observeNewReveals) window.observeNewReveals();
+      }
       document.getElementById('listings').scrollIntoView({ behavior: 'smooth' });
     }
 
