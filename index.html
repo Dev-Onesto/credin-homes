@@ -82,30 +82,31 @@
       }
 
     /* ===== ANIMATIONS ===== */
-     /* ===== ANIMATIONS ===== */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
+    /* Elements start hidden */
     .fade-up {
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
     }
     
+    /* When entering view — animation plays */
     .fade-up.show {
-      opacity: 1;
-      transform: translateY(0);
+      animation: fadeInUp 0.7s ease forwards;
     }
     
-    .stagger > *:nth-child(1) { transition-delay: 0s; }
-    .stagger > *:nth-child(2) { transition-delay: 0.1s; }
-    .stagger > *:nth-child(3) { transition-delay: 0.2s; }
-    .stagger > *:nth-child(4) { transition-delay: 0.3s; }
-    .stagger > *:nth-child(5) { transition-delay: 0.4s; }
-    .stagger > *:nth-child(6) { transition-delay: 0.5s; }
+    /* Stagger delays for grid children */
+    .stagger > *:nth-child(1) { animation-delay: 0s; }
+    .stagger > *:nth-child(2) { animation-delay: 0.1s; }
+    .stagger > *:nth-child(3) { animation-delay: 0.2s; }
+    .stagger > *:nth-child(4) { animation-delay: 0.3s; }
+    .stagger > *:nth-child(5) { animation-delay: 0.4s; }
+    .stagger > *:nth-child(6) { animation-delay: 0.5s; }
     
+    /* Hero page-load animations */
     .hero-anim { animation: fadeInUp 0.8s ease both; }
     .d1 { animation-delay: 0.2s; }
     .d2 { animation-delay: 0.4s; }
@@ -692,6 +693,8 @@
 
 <script>
     (function() {
+      var lastScrollY = window.scrollY;
+    
       // 1. Add fade-up class to sections and cards
       document.querySelectorAll('section:not(#hero), .property-card, .service-card, .value-card').forEach(function(el) {
         el.classList.add('fade-up');
@@ -702,14 +705,22 @@
         grid.classList.add('stagger');
       });
     
-      // 3. Scroll observer - adds 'show' when scrolling down, never removes
+      // 3. Scroll observer — re-animates every time you scroll down to it
       var observer = new IntersectionObserver(function(entries) {
+        var currentScrollY = window.scrollY;
+        var scrollingDown = currentScrollY > lastScrollY;
+        lastScrollY = currentScrollY;
+    
         entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && scrollingDown) {
+            // Scrolling down — element enters view → animate in
             entry.target.classList.add('show');
+          } else if (!entry.isIntersecting && !scrollingDown) {
+            // Scrolling up — element exits view → reset instantly (no animation)
+            entry.target.classList.remove('show');
           }
         });
-        }, { threshold: 0, rootMargin: '0px 0px 30px 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px 50px 0px' });
     
       document.querySelectorAll('.fade-up').forEach(function(el) {
         observer.observe(el);
