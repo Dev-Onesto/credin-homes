@@ -516,8 +516,9 @@
           </div>
         </div>
       `).join('');
-
-      if (window.observeNewReveals) window.observeNewReveals();
+      
+          if (window.observeNewReveals) window.observeNewReveals();
+      document.getElementById('listings').scrollIntoView({ behavior: 'smooth' });
     }
 
     // ===== SERVICES DATA (All 13) =====
