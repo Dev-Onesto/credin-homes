@@ -11,6 +11,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
   <script>
     tailwind.config = {
       theme: {
@@ -64,16 +65,16 @@
 
   <!-- PAGE HEADER -->
   <section class="bg-navy py-16 sm:py-20 px-4 sm:px-6 text-center">
-    <p class="text-gold text-xs sm:text-sm font-semibold tracking-[3px] uppercase mb-3">Get in touch</p>
-    <h1 class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Contact Us</h1>
-    <p class="text-gray-300 text-sm sm:text-base max-w-lg mx-auto">We are here to help you find your ideal property in Adamawa and Abuja</p>
+    <p class="text-gold text-xs sm:text-sm font-semibold tracking-[3px] uppercase mb-3 reveal">Get in touch</p>
+    <h1 class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 reveal">Contact Us</h1>
+    <p class="text-gray-300 text-sm sm:text-base max-w-lg mx-auto reveal">We are here to help you find your ideal property in Adamawa and Abuja</p>
   </section>
 
   <!-- CONTACT INFO CARDS -->
   <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 reveal-stagger">
       <!-- Phone -->
-      <div class="bg-white border border-gray-200 rounded-xl p-8 text-center">
+      <div class="bg-white border border-gray-200 rounded-xl p-8 text-center reveal">
         <div class="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-4">
           <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         </div>
@@ -82,8 +83,8 @@
         <a href="https://wa.me/2349138247329" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-navy hover:text-gold transition-colors">+234 913 824 7329</a>
       </div>
 
-      <!-- Email -->
-      <div class="bg-white border border-gray-200 rounded-xl p-8 text-center">
+           <!-- Email -->
+      <div class="bg-white border border-gray-200 rounded-xl p-8 text-center reveal">
         <div class="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-4">
           <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
@@ -93,7 +94,7 @@
       </div>
 
       <!-- Office Hours -->
-      <div class="bg-white border border-gray-200 rounded-xl p-8 text-center">
+      <div class="bg-white border border-gray-200 rounded-xl p-8 text-center reveal">
         <div class="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-4">
           <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
@@ -104,9 +105,9 @@
     </div>
 
     <!-- LOCATIONS -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 reveal-stagger">
       <!-- Adamawa -->
-      <div class="bg-white border border-gray-200 rounded-xl p-8">
+      <div class="bg-white border border-gray-200 rounded-xl p-8 reveal">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -127,8 +128,8 @@
         </a>
       </div>
 
-      <!-- Abuja -->
-      <div class="bg-white border border-gray-200 rounded-xl p-8">
+            <!-- Abuja -->
+      <div class="bg-white border border-gray-200 rounded-xl p-8 reveal">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -152,12 +153,12 @@
 
     <!-- CONTACT FORM -->
     <div class="max-w-xl mx-auto">
-      <div class="text-center mb-8">
+      <div class="text-center mb-8 reveal">
         <h2 class="text-2xl sm:text-3xl font-bold text-navy mb-2">Send us a message</h2>
         <p class="text-sm text-gray-500">Fill out the form below and we will get back to you within 24 hours.</p>
       </div>
 
-      <form id="lead-form" action="https://formspree.io/f/maqrvpvb" method="POST" class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 text-left shadow-sm">
+      <form id="lead-form" class="reveal" action="https://formspree.io/f/maqrvpvb" method="POST" class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 text-left shadow-sm">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
             <label class="block text-xs font-semibold text-navy mb-1.5">Full name</label>
