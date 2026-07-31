@@ -396,10 +396,6 @@
 
     let currentFilter = 'all';
 
-    function observeReveals() {
-      document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => revealObserver.observe(el));
-    }
-
     function renderProperties(filter) {
       const grid = document.getElementById('property-grid');
       const filtered = filter === 'all' ? properties : properties.filter(p => p.type === filter);
@@ -522,10 +518,6 @@
       `).join('');
 
       if (window.observeNewReveals) window.observeNewReveals();
-    }
-
-      // Scroll to listings
-      document.getElementById('listings').scrollIntoView({ behavior: 'smooth' });
     }
 
     // ===== SERVICES DATA (All 13) =====
