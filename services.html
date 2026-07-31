@@ -74,7 +74,7 @@
   <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
    <div id="all-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal-stagger"></div>
     
-    <div class="text-center mt-12">
+    <div class="text-center mt-12 reveal">
       <a href="index.html#contact" class="btn-primary px-8 py-3 rounded-lg text-sm font-semibold inline-flex items-center gap-2">
         Get in Touch
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -170,7 +170,7 @@
 
     const grid = document.getElementById('all-services-grid');
     grid.innerHTML = allServices.map(s => `
-      <div class="service-card bg-white border border-gray-200 rounded-xl p-6 sm:p-8 cursor-default">
+      <div class="service-card bg-white border border-gray-200 rounded-xl p-6 sm:p-8 cursor-default reveal">
         <div class="svc-icon w-12 h-12 bg-navy/5 rounded-xl flex items-center justify-center mb-5 text-navy">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">${s.icon}</svg>
         </div>
@@ -178,6 +178,7 @@
         <p class="text-sm text-gray-500 leading-relaxed">Professional ${s.name.toLowerCase()} services tailored to your needs in Adamawa and Abuja.</p>
       </div>
     `).join('');
+             if (window.observeNewReveals) window.observeNewReveals();
   </script>
 
   
