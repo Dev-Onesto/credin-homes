@@ -13,6 +13,9 @@
   <link rel="manifest" href="site.webmanifest">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  </script>
+  <script>
     tailwind.config = {
       theme: {
         extend: {
